@@ -43,6 +43,11 @@ namespace Babylon_V._2._0
         {
             int Jambo = 69;
 
+            if ( Jambo == 68)
+            {
+                Console.WriteLine("Кукрыниксы")
+            }
+
             string username = NiggerLogin.Text;
             string password = NiggerPassword.Text;
             string Name = NiggerName.Text;
