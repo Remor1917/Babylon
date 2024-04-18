@@ -20,9 +20,17 @@ namespace Babylon_V._2._0
     /// </summary>
     public partial class MainPage : Page
     {
+        
+        
+        
+
         public MainPage()
         {
             InitializeComponent();
+
+            Reg_Window reg_Window = new Reg_Window();
+
+            TextBox nigger_Time = reg_Window.Nigger_Time;
         }
 
         private void UP_Button(object sender, RoutedEventArgs e)

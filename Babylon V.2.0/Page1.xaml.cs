@@ -28,6 +28,7 @@ namespace Babylon_V._2._0
         public static class Data
         {
             public static string Login { get; set; }
+
         }
         public Page1()
         {
