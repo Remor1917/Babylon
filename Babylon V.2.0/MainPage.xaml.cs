@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,11 @@ namespace Babylon_V._2._0
     /// </summary>
     public partial class MainPage : Page
     {
-        
-        
+
+        private TextBlock[] _timeOfGame;
+        private TextBlock[] _timeForGame;
+        private TextBlock[] _ostatok;
+        private Rectangle[] _rectangle;
         
 
         public MainPage()
@@ -29,8 +33,23 @@ namespace Babylon_V._2._0
             InitializeComponent();
 
             Reg_Window reg_Window = new Reg_Window();
+            
 
-            TextBox nigger_Time = reg_Window.Nigger_Time;
+            _timeOfGame = new TextBlock[]
+            {
+                TimeOfGame1, TimeOfGame2, TimeOfGame3,
+            };
+
+            _timeForGame = new TextBlock[]
+            {
+                TimeForGame1, TimeForGame2, TimeForGame3,
+            };
+
+            _ostatok = new TextBlock[]
+            {
+                Ostatok1, Ostatok2, Ostatok3,
+            };
+
         }
 
         private void UP_Button(object sender, RoutedEventArgs e)
@@ -51,8 +70,15 @@ namespace Babylon_V._2._0
         private void Reg_Baton(object sender, RoutedEventArgs e)
         {
             var reg = new Reg_Window();
-
+            reg.RegistrationClosed += Reg_Window_Closed;
             reg.Show();
+
+        }
+
+        private void Reg_Window_Closed(object sender, EventArgs e)
+        {
+            var reg_Window = sender as Reg_Window;
+            HandleRegData(reg_Window.ValueNC, reg_Window.Value, reg_Window.Date1);
         }
 
         private void UnReg_Baton(object sender, RoutedEventArgs e)
@@ -60,6 +86,57 @@ namespace Babylon_V._2._0
             var unreg = new Unreg_Window();
 
             unreg.Show();
+        }
+
+        // Метод для обработки данных из Reg_Window и передачи их в соответствующий GroupBox
+        private void HandleRegData(int computerNumber, int timeOfGame, DateTime timeForGames)
+        {
+           // Проверяем, что номер компьютера в допустимом диапазоне
+            if (computerNumber >= 1 && computerNumber <= _timeOfGame.Length)
+            {
+
+                DateTime dateTime = timeForGames.AddHours(timeOfGame);
+                TimeSpan ost = dateTime - DateTime.Now;
+
+                /*DateTime dateTime = timeForGames;
+                dateTime = dateTime.AddHours(timeOfGame);
+                TimeSpan ost = DateTime.Parse(Convert.ToString(timeOfGame)) - dateTime;*/
+
+                TextBlock timeOfComputer = _timeOfGame[computerNumber - 1];
+                TextBlock timeForComputer = _timeForGame[computerNumber - 1];
+                TextBlock ostatok = _ostatok[computerNumber - 1];
+                Rectangle rectangle = _rectangle[computerNumber - 1];
+
+                ;
+
+                timeOfComputer.Text = "Время брони: " + timeForGames;
+
+                timeForComputer.Text = "Время окончания брони: " + dateTime;
+
+                ostatok.Text = "Остаток времени: " + ost;
+
+                if (ost > TimeSpan.FromMinutes(10)) 
+                {
+                    rectangle.Fill = Brushes.Red;
+                }
+                else
+                {
+                    rectangle.Fill = Brushes.White;
+                }
+                // В этом месте можно установить нужные значения в TextBlock или другие элементы GroupBox
+                // Например:
+                // TextBlock_TimeOfGame.Text = timeOfGame;
+                // TextBlock_TimeForGames.Text = timeForGames;
+            }
+            else
+            {
+                MessageBox.Show("Неверный номер компьютера.");
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

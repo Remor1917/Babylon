@@ -22,65 +22,69 @@ namespace Babylon_V._2._0
     /// </summary>
     public partial class Reg_Window : Window
     {
+
         SqlConnection BabylonDB = new SqlConnection(ConfigurationManager.ConnectionStrings["BabylonDB"].ConnectionString);
 
         private double value1 = 0;
         private double valueNC = 0;
+        public DateTime date1;
 
-        private DateTime time1;
-
-        public DateTime Date
+        public int NumberOfComputers
         {
-            get
-            {
-                return time1;
-            }
-
-            set
-            {
-                time1 = value;
-
-            }
+            get { return ValueNC; }
         }
+
+        public int TimeForGame
+        {
+            get { return Value; }
+        }
+
+        public DateTime Date1
+        {
+            get { return date1; }
+        }
+
+        
 
         public Reg_Window()
         {
             InitializeComponent(); 
 
             Nigger_Time.IsEnabled = false;
+            Time_Now.IsEnabled = false;
             Nigger_Time.Text = "0";
+            NumberOfComputer.Text = "0";
 
-            Thread time = new Thread(() =>
+            Task.Run(() =>
             {
                 while (true)
                 {
-                    DateTime date1 = DateTime.Now;
+                    date1 = DateTime.Now;
 
                     Dispatcher.Invoke(() =>
                     {
                         
-                        Time_Now.Text = date1.ToShortTimeString();
+                        Time_Now.Text = date1.ToLongTimeString();
 
                     });
 
-                    Thread.Sleep(2001);    
+                    Thread.Sleep(1000);    
 
                 }
 
-                
-
             });
-            time.Start();
+            
             
         }
+       
 
 
 
-        public double Value
+        public int Value
         {
             get
             {
-                return value1;
+                return (int)value1;
             }
             set
             {
@@ -92,11 +96,11 @@ namespace Babylon_V._2._0
             }
         }
 
-        public double ValueNC
+        public int ValueNC
         {
             get
             {
-                return valueNC;
+                return (int)valueNC;
             }
             set
             {
@@ -203,6 +207,7 @@ namespace Babylon_V._2._0
             
         }
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string Time_of_game = Time_Now.Text;
@@ -225,13 +230,52 @@ namespace Babylon_V._2._0
 
                 if (affectedRows > 0)
                 {
-                    MessageBox.Show("Пользователь успешно зарегистрирован!");
+                    MessageBox.Show("Бронь установлена!");
                 }
                 else
                 {
-                    MessageBox.Show("Не удалось зарегистрировать пользователя!");
+                    MessageBox.Show("Не удалось установить бронь!");
                 }
             }
+
+            RegistrationClosed?.Invoke(this, EventArgs.Empty);
+            this.Close();
+        }
+
+        public event EventHandler<EventArgs> RegistrationClosed;
+
+        private void NameClient_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void NameClient_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (int.TryParse(e.Text, out int i))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void SubnameClient_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (int.TryParse(e.Text, out int i))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void OtchestvoClient_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (int.TryParse(e.Text, out int i))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void NumberOfPhone_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
         }
     }
 }

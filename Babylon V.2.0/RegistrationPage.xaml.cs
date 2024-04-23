@@ -40,13 +40,7 @@ namespace Babylon_V._2._0
         }
 
         private void Autorization_Click(object sender, RoutedEventArgs e)
-        {
-            int Jambo = 69;
-
-            if ( Jambo == 68)
-            {
-                Console.WriteLine("Кукрыниксы");
-            }
+        { 
 
             string username = NiggerLogin.Text;
             string password = NiggerPassword.Text;

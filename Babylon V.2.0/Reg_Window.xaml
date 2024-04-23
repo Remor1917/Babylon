@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Babylon_V._2._0"
         mc:Ignorable="d"
-        Title="Reg_Window" Height="548" Width="629">
+        Title="Reg_Window" Height="572" Width="629">
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Margin="0,0,0,-16">
         <TextBlock HorizontalAlignment="Left" Height="30" Margin="100,20,0,0" TextWrapping="Wrap" Text="Окно брони" VerticalAlignment="Top" Width="412" RenderTransformOrigin="0.728,0.605" FontSize="18" TextAlignment="Center"/>
         <TextBlock HorizontalAlignment="Left" Height="29" Margin="23,80,0,0" TextWrapping="Wrap" Text="Текущее время" VerticalAlignment="Top" Width="166" FontSize="18"/>
@@ -20,14 +20,14 @@
         <Button Name ="Button_Down_NumberOfComputer" Content="-" HorizontalAlignment="Left" Height="30" Margin="482,204,0,0" VerticalAlignment="Top" Width="30" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" FontSize="18" Click="Button_Down_NumberOfComputer_Click"/>
         <Button Content="Внести бронь" HorizontalAlignment="Left" Height="40" Margin="185,498,0,0" VerticalAlignment="Top" Width="242" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Click="Button_Click"/>
         <TextBlock HorizontalAlignment="Left" Height="29" Margin="23,264,0,0" TextWrapping="Wrap" Text="Имя клиента" VerticalAlignment="Top" Width="166" FontSize="18"/>
-        <TextBox Name ="NameClient" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="242" Margin="189,264,0,0"/>
+        <TextBox Name ="NameClient" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="242" Margin="189,264,0,0" TextChanged="NameClient_TextChanged" PreviewTextInput="NameClient_PreviewTextInput"/>
         <TextBlock HorizontalAlignment="Left" Height="29" Margin="23,311,0,0" TextWrapping="Wrap" Text="Фамилия клиента" VerticalAlignment="Top" Width="166" FontSize="18"/>
-        <TextBox Name ="SubnameClient"  HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="242" Margin="189,311,0,0"/>
+        <TextBox Name ="SubnameClient"  HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="242" Margin="189,311,0,0" PreviewTextInput="SubnameClient_PreviewTextInput"/>
         <TextBlock HorizontalAlignment="Left" Height="29" Margin="23,356,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" FontSize="18" Text="Отчество клиента"/>
-        <TextBox Name ="OtchestvoClient" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="242" Margin="189,356,0,0"/>
+        <TextBox Name ="OtchestvoClient" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="242" Margin="189,356,0,0" PreviewTextInput="OtchestvoClient_PreviewTextInput"/>
         <TextBlock HorizontalAlignment="Left" Height="29" Margin="23,402,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" FontSize="18" Text="E-Mail"/>
         <TextBox Name ="EMailClient" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="242" Margin="189,402,0,0"/>
         <TextBlock HorizontalAlignment="Left" Height="29" Margin="23,445,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" FontSize="18" Text="Номер телефона"/>
-        <TextBox Name ="NumberOfPhone" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="242" Margin="189,445,0,0"/>
+        <TextBox Name ="NumberOfPhone" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="{Binding Number, StringFormat=}" VerticalAlignment="Top" Width="242" Margin="189,445,0,0" PreviewTextInput="NumberOfPhone_PreviewTextInput"/>
     </Grid>
 </Window>
